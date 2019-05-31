@@ -12,15 +12,20 @@ var hue = require("node-hue-api"),
 
 //Display command results in console
 var displayResult = function(result) {
+
 	console.log(JSON.stringify(result, null, 2));
+	
 };
 
 //Function taken from campushippo.com
 var rgbToHex = function (rgb) { 
+
   var hex = Number(rgb).toString(16);
   if (hex.length < 2) {
+
        hex = "0" + hex;
   }
+
   return hex;
 };
 
@@ -54,18 +59,21 @@ client.on("message", message => {
 	const command = args.shift().toLowerCase(); 
 
 	switch (command) {
+
 		case "light.off" : //Turn light off
 			api.setLightState(lightNum, state.off())
 		       .then(displayResult)
 		       .done();
 			message.channel.send("Light Off!");
 			break;
+
 		case "light.on" : //Turn light on
 			api.setLightState(lightNum, state.on())
 			   .then(displayResult)
 			   .done();
 			message.channel.send("Light On!");
 			break;
+
 		case "light.rgb" : //Change light colour
 			let r = args[0];
 			let g = args[1];
@@ -79,6 +87,7 @@ client.on("message", message => {
 				.setDescription(`Red Value: ${r}. Green Value: ${g}. Blue Value: ${b}`);
 			message.channel.send(embed);
 			break;
+
 		case "light.switch" : //Switch to different light
 			let num = args[0];
 			lightNum = num;
