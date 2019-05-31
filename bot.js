@@ -54,19 +54,19 @@ client.on("message", message => {
 	const command = args.shift().toLowerCase(); 
 
 	switch (command) {
-		case "light.off" :
+		case "light.off" : //Turn light off
 			api.setLightState(lightNum, state.off())
 		       .then(displayResult)
 		       .done();
 			message.channel.send("Light Off!");
 			break;
-		case "light.on" :
+		case "light.on" : //Turn light on
 			api.setLightState(lightNum, state.on())
 			   .then(displayResult)
 			   .done();
 			message.channel.send("Light On!");
 			break;
-		case "light.rgb" :
+		case "light.rgb" : //Change light colour
 			let r = args[0];
 			let g = args[1];
 			let b = args[2];
@@ -79,7 +79,7 @@ client.on("message", message => {
 				.setDescription(`Red Value: ${r}. Green Value: ${g}. Blue Value: ${b}`);
 			message.channel.send(embed);
 			break;
-		case "light.switch" :
+		case "light.switch" : //Switch to different light
 			let num = args[0];
 			lightNum = num;
 			//fs.writeFile("./config.json", JSON.stringify(config))
@@ -87,4 +87,4 @@ client.on("message", message => {
 	}
 });
 
-client.login(Buffer.from(config.token, 'base64').toString('ascii'))
+client.login(Buffer.from(config.token, 'base64').toString('ascii')) //Login with secret token
