@@ -1,0 +1,260 @@
+
+/*-----header css------ */
+
+.header{
+  height: 90px;
+  width: 1200px;
+  background-image: linear-gradient(rgba(5,22,38,255),rgba(5,22,38,255));
+  background-position: center;
+  background-size: cover;
+  position: relative;
+
+}
+
+
+nav{
+  display: flex;
+  padding: 1% 6%;
+  justify-content: space-between;
+  align-items: center;
+  margin: auto;
+}
+
+nav img{
+ width: 200px;
+}
+.nav-links{
+  flex: 1;
+  text-align: right;
+}
+.nav-links ul li{
+  list-style: none;
+  display: inline-block;
+  padding: 10px 12px;
+  position: relative;
+}
+.nav-links ul li a{
+  color: azure;
+  text-decoration: none;
+  font-size: 13px;
+}
+.nav-links ul li::after{
+  content: '';
+  width: 0%;
+  height: 2px;
+  background: #81FFD9;
+  display: block;
+  margin: auto;
+  transition: 0.5s;
+}
+.nav-links ul li:hover::after{
+  width: 100%;
+}
+
+.profile{
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: flex;
+  text-align: right;
+}
+
+
+
+
+
+
+body{
+    margin: 1px;
+    padding: 1px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    background-image: url('/course+/imgs/signup.png');
+    background-size: cover;
+    background-attachment: fixed;
+}
+#area{
+
+margin-left:-40px;
+margin-bottom: -20px;
+
+}
+h3{
+  color :#FFFFFF;
+  text-align: center;
+}
+h4{
+  color:red;
+  font-size: 12px;
+  font-weight: normal;
+}
+#icon{
+  font-size: 50px;
+  color:rgba(80, 145, 137, 5);
+}
+#pro{
+  font-size: 30px;
+  color:rgb(116,220,195);
+}
+.Welcome{
+ width:  490px;
+ height: 200px;
+ background-color: rgba(54, 136, 71, 0.3);
+ margin: auto;
+ margin-top: 30px;
+ color:  #FFFFFF;
+ text-align: center;
+ padding: 9px 0px 4px 0px;
+ border-radius: 15px 15px 0px 0px;
+ text-shadow:1px 1px 3px #000000;
+ position: relative;
+
+}
+
+form{
+  padding: 10px;
+}
+.container {
+  background-color:  rgba(80, 145, 137, 0.5);
+  width: 490px;
+  height: 650px;
+  margin:auto;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 0 40px 20px rgba(0,0,0,0.26);
+}
+
+
+label{
+    font-size: 15px;
+    color :#ffff;
+    font-weight: bold;
+    padding-left: 10px;
+    margin: 20px;
+    text-shadow:2px 2px 4px #000000;
+
+}
+h1{
+text-align: center;
+
+
+}
+p{
+  font-size: 13px;
+  color: #FFFFFF;
+  margin-left:80px;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-shadow:2px 2px 4px #000000;
+}
+/*--- password icon ---*/
+form i {
+  margin-left: -40px;
+    cursor: pointer;
+}
+input{
+  width: 80%;
+  background: transparent;
+  border: 1px solid #ffff;
+  margin: 10px 0 ;
+  height: 30px;
+  margin-left: 43px;
+  border-radius: 20px;
+  box-sizing: border-box;
+  outline: none;
+  text-align:center;
+  /*color: #ffff;*/
+
+}
+.placeholder{
+    color: #ffff;
+    font-size: 12 px;
+}
+input:focus {
+  outline: none !important;
+  border:1px solid #87fcd9;
+  box-shadow: 0 0 10px #719ECE;
+
+}
+#password:focus{
+    color: black;
+    font-size: 14px;
+}
+
+/*-----button css------ */
+#btn{
+    border: none;
+    background-color: DarkGoldenrod;
+    border-radius: 20px;
+    padding: 12px;
+    color: white;
+    width: 130px;
+    margin: 15px;
+    align-items: center;
+    margin-top: 20px;
+    margin-left: 30px;
+    text-shadow:2px 2px 4px #000000;
+}
+
+#btn-login{
+
+  margin: 0px 0;
+  margin-left: 60px;
+}
+
+#btn:hover{
+    box-shadow: 0 0 25px rgba(8, 8, 8, 0.2);
+    background-color: #20B2AA;
+}
+/*-----error css------ */
+
+.error{
+  color: red;
+  font-size: 12px;
+  margin-top: 13px;
+  padding-left: 15px;
+  font-weight: normal;
+}
+
+/*-----success css------ */
+#display-success
+{
+width: 350px;
+border: 1px solid #D8D8D8;
+padding: 5px;
+border-radius: 5px;
+font-family: Arial;
+font-size: 11px;
+text-transform: uppercase;
+background-color: rgb(236, 255, 216);
+color: green;
+text-align: center;
+margin-top: 15px;
+margin-left: 60px;
+text-shadow:none;
+
+}
+
+#display-success img
+{
+position:relative;
+right: 20px;
+
+}
+#display-error
+{
+width: 350px;
+border: 1px solid #D8D8D8;
+padding: 5px;
+border-radius: 5px;
+font-family: Arial;
+font-size: 11px;
+text-transform: uppercase;
+background-color: rgb(245, 163, 145);
+color: red;
+text-align: center;
+margin-top: 15px;
+margin-left: 60px;
+text-shadow:none;
+
+}

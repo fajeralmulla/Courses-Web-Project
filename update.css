@@ -1,0 +1,195 @@
+@import url(
+    'https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,400;0,600;0,900;1,200;1,500;1,800&display=swap');
+/*------- ROOT VARIABLES -------- */
+
+body{
+
+    margin: 0;
+    padding: 0;
+    font-family: 'Source Code Pro', monospace; 
+    background: linear-gradient(130deg, #00C9FF 0%, #92FE9D 100%);
+    height: 100vh;
+    overflow-y: scroll;
+   
+}
+
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    width: 600px;
+    background: white;
+    border-radius: 10px;
+}
+
+
+.center h1{
+    color:rgb(116,220,195);
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px solid silver;
+}
+
+.center form{
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .txt-field{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.txt-field input{
+    width: 100%;
+    padding: 0 5px;
+    height: 40px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+}
+
+label{
+    font-size: 14px; 
+    color: rgb(12, 44, 75);
+}
+
+.txt_field span::before{
+    content: '';
+    position: absolute;
+    top: 40px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #2691d9;
+    transition: .5s;
+  }
+  .txt_field input:focus ~ label,
+  .txt_field input:valid ~ label{
+    top: -5px;
+    color: #2691d9;
+  }
+  .txt_field input:focus ~ span::before,
+  .txt_field input:valid ~ span::before{
+    width: 100%;
+  }
+  .submit{
+    margin: -5px 0 20px 5px;
+    color: #a6a6a6;
+    cursor: pointer;
+  }
+  .submit:hover{
+    text-decoration: underline;
+  }
+
+  input[type="submit"]{
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: linear-gradient(130deg, #00C9FF 0%, #92FE9D 100%);
+    border-radius: 25px;
+    font-size: 18px;
+    color: rgb(12, 44, 75);
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Source Code Pro', monospace;  
+  }
+
+  input[type="submit"]:hover{
+    border-color: #2691d9;
+    transition: .5s;
+  }
+
+
+button[type="button"]{
+    border: none;
+    background: none;
+    font-size: 14px;
+    color: rgb(12, 44, 75);
+    font-weight: 700;
+    cursor: pointer;
+    outline: none;
+    font-family: 'Source Code Pro', monospace; 
+    text-decoration: underline; 
+    top:60%;
+    left:40%;
+    position: relative;
+    margin-bottom: 2rem;
+  }
+
+
+  .signup_link{
+    margin: 30px 0;
+    text-align: center;
+    font-size: 16px;
+    color: #666666;
+
+  }
+  .signup_link a{
+    color: #2691d9;
+    text-decoration: none;
+  }
+  .signup_link a:hover{
+    text-decoration: underline;
+  }
+  form i {
+    margin-left: -30px;
+      cursor: pointer;}
+  /*-----error css------ */
+label.error{
+    color: red;
+    font-size: 12px;
+    margin-top: 13px;
+    padding-left: 40px;
+   font-weight: normal;
+  
+  
+  }
+  #display-success
+{
+width: 350px;
+border: 1px solid #D8D8D8;
+padding: 5px;
+border-radius: 5px;
+font-family: Arial;
+font-size: 11px;
+text-transform: uppercase;
+background-color: rgb(236, 255, 216);
+color: green;
+text-align: center;
+margin-top: 15px;
+margin-left: 60px;
+text-shadow:none;
+
+}
+#display-error
+{
+width: 350px;
+border: 1px solid #D8D8D8;
+padding: 5px;
+border-radius: 5px;
+font-family: Arial;
+font-size: 11px;
+text-transform: uppercase;
+background-color: rgb(245, 163, 145);
+color: red;
+text-align: center;
+margin-top: 15px;
+margin-left: 60px;
+text-shadow:none;
+
+}
+
+#display-success img
+{
+position:relative;
+right: 20px;
+
+}
+  
+  
+
