@@ -10,7 +10,11 @@ unset($_SESSION["statusError"]);
 if (isset($_SESSION['username'])){
 
     if (isset($_POST['update'])){
-        
+        /* check the token from the post reqtuset */
+
+ 
+        $token = filter_input(INPUT_POST, 'token', FILTER_SANITIZE_STRING);
+        if($token &&$token == $_SESSION['tokenUpdate']){ 
         $username= $_SESSION['username'];
         $user_check_query = "SELECT * FROM user WHERE username='$username' ";
         $result = mysqli_query($conn, $user_check_query);
@@ -18,7 +22,7 @@ if (isset($_SESSION['username'])){
         $email= $userinfo['email'];
         $fname= mysqli_real_escape_string($conn,$_POST['fname']);
         $lname=  mysqli_real_escape_string($conn,$_POST['lname']);
-        /*$currentPassword= mysqli_real_escape_string($connect,$_POST['pass']);*/
+        $currentPassword= mysqli_real_escape_string($connect,$_POST['pass']);
         $newPassword= mysqli_real_escape_string($conn,$_POST['npass']);
         $confirmPassword= mysqli_real_escape_string($conn,$_POST['cnpass']);
         $counterrors=0;
@@ -45,14 +49,14 @@ elseif (!preg_match("/^[A-Za-z]+$/",$lname)) {
 /* ----Passwords validation-----*/
 
 
-/*  Countermeasure
+/*  Countermeasure*/
 if($currentPassword==""){
     $currentPassword_error ="Please enter a current password";
     $counterrors+=1;}
 elseif (!preg_match("/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{10,}$/",$currentPassword)) {
     $currentPassword_error ="Password must contain Minimum ten characters, at least one uppercase letter, one lowercase letter, one number and one special character" ;
     $counterrors+=1;
-    } */
+    } 
     
 if($newPassword==""){
     $password_error="Please enter a new password";
@@ -78,7 +82,7 @@ $selectPassword= "SELECT password FROM user WHERE username='$username'";
 $result=mysqli_query($conn,  $selectPassword);
 $row=mysqli_fetch_assoc( $result );
 $userpassword=$row['password'];
-/* without Countermeasure */
+/* without Countermeasure 
     $hashedNewPassword= password_hash($newPassword,PASSWORD_DEFAULT);
     $updatequery= "UPDATE user SET fname='$fname', lname ='$lname', password= '$hashedNewPassword' WHERE username= '$username'";
     $result2= mysqli_query($conn, $updatequery);
@@ -89,12 +93,28 @@ $userpassword=$row['password'];
             else{
             $_SESSION["statusError"]="Something Went Wrong, Please Try Again.";
                 } 
+*/
 
 
 
 
+ /*  Countermeasure*/
+ if(password_verify($currentPassword,$userpassword)){
 
- 
+                $hashedNewPassword= password_hash($newPassword,PASSWORD_DEFAULT);
+                $updatequery= "UPDATE user SET fname='$fname', lname ='$lname', password= '$hashedNewPassword' WHERE username= '$username'";
+                $result2= mysqli_query($conn, $updatequery);
+        
+                if($result2){
+                    $_SESSION["statusUpdate"]= "Data Updated!";
+                }
+                else{
+                    $_SESSION["statusError"]="Something Went Wrong, Please Try Again.";
+                }
+            }
+        else{
+            $currentPassword_error="The current password is not found in the database .";}
+        
             
        
     
@@ -105,12 +125,17 @@ mysqli_close($conn);
 
 }
 
-
+}
+else{
+    // if the token from the post requset don't match the token at the session
+    $_SESSION["statusError"]="Request not allowed.";
+}
 }}
 
 ?>
 <!--- UPDATE FORM IN HTML --->
-
+<?php // Create  one time  anti-CRSF token
+$_SESSION['tokenUpdate'] = bin2hex(random_bytes(35));?>
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" href="/course+/css/update.css">
@@ -166,6 +191,14 @@ mysqli_close($conn);
                     <label class="error"><?php if (isset($lname_error)) echo $lname_error; ?></label>
                     <span></span>
                 </div>
+                <!--Countermeasure -->
+                
+                <div class="txt-field">
+                    <label>Enter Current Password</label>
+                    <input type="password" id="pass" class="input-box" name="pass"  >
+                    <label class="error"><?php if (isset($currentPassword_error)) echo $currentPassword_error; ?></label>
+                    <span></span>
+                </div>
                 
 
                 <div class="txt-field">
@@ -179,11 +212,9 @@ mysqli_close($conn);
                     <label>Confirm New Password</label>
                     <input type= "password" name="cnpass"><br>
                     <label class="error"><?php if (isset($password_errorCon)) echo $password_errorCon; ?></label>
+                    <input type="hidden" name="token" value="<?php echo $_SESSION['tokenUpdate'] ?? '' ?>">
                     <span></span>
                 </div> 
-
-             
-
                 <div class="btn">
                 <input type= "submit" name="update" value="Save Changes">
                 <button type="button" name="button" onclick="window.location.href = '/course+/mainPuser.php';">Cancel</button>
